@@ -13,17 +13,17 @@
     <style>
         @font-face {
             font-family: 'Archivo-bold';
-            src: url('Archivo/static/Archivo-bold.ttf');
+            src: url('Archivo/static/Archivo-Bold.ttf');
         }
 
         @font-face {
             font-family: 'Archivo-light';
-            src: url('Archivo/static/Archivo-light.ttf');
+            src: url('Archivo/static/Archivo-Light.ttf');
         }
 
         @font-face {
             font-family: 'Archivo-medium';
-            src: url('Archivo/static/Archivo-medium.ttf');
+            src: url('Archivo/static/Archivo-Medium.ttf');
         }
 
                 
@@ -33,7 +33,7 @@
             height: 100%;
             /* font-family: 'Archivo', sans-serif; */
             background: #ffffff;
-            color: black;
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -51,9 +51,9 @@
 
         #formulario {
             color: white(0, 0, 0);
-            /* background-color: rgb(255, 255, 255); */
+            background-color: rgb(112,124,124);
             position: absolute;
-            right: 20px;
+            right: 100px;
             padding: 0px;
             
         }     
@@ -112,13 +112,15 @@
             width: 386px;
         }
         #fieldsetimagem{
-            width:880px;
-            height:340px;
+            width:875px;
+            height:290px;
             margin-left: 40px;
             margin-top: 11px;
+	    border:none;
             }
         #fieldsetformulario{
             margin-top: 0%;
+	    border:none;
             }
 
 
@@ -129,14 +131,14 @@
     <div id="areaImagem">
         <div id="formulario">
             <fieldset id="fieldsetformulario">
-                <form action="" method="post">
+                    <form action="" method="post">
                     <label id="titlenome" for="for_nome">Nome:</label>
                     <input id="for_nome" type="text" style="display: inline-block;" oninput="alterarValor('for_nome')">
                     <label for="for_cargo">Cargo:</label>
                     <input id="for_cargo" type="text" style="display: inline-block;" oninput="alterarValor('for_cargo')">
-                    <label for="for_celular">Celular:</label>
+                    <label for="for_celular">Tel Móvel Corporativo:</label>
                     <input type="tel" name="Celular" id="for_celular" style="display: inline-block;font-family: 'Archivo', sans-serif;" oninput="formatarCelular(this);alterarValor('for_celular');imagemcelular('imgtelefone')">
-                    <label for="for_telefone">Telefone:</label>
+                    <label for="for_telefone">Tel Fixo Corporativo:</label>
                     <input type="tel" name="telefone" id="for_telefone" style="font-family: 'Archivo', sans-serif;" oninput="formatarTelefone(this);alterarValor('for_telefone');imagemcelular('imgtelefone')">
                     <label for="for_filial">Filial:</label>
                     <select name="filial" id="for_filial" oninput="alterarFilial()">
@@ -215,7 +217,7 @@
             document.getElementById('imgtelefone').src = "FONEPRETO.png"
             document.getElementById('imgtelefone').style.maxWidth = "36px"
             document.getElementById('tdDados').style.width = '478px'
-            document.querySelector("table #for_cargo").style.color = 'white'
+            document.querySelector("table #for_cargo").style.color = 'black'
             //document.querySelector("table #for_cargo").style.marginTop = '5.5px'
             //document.querySelector("table #for_cargo").style.fontSize = '20.5px'
             document.querySelector("#NomeCargo").style.marginTop = '52px'
