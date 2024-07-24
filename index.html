@@ -65,7 +65,7 @@
 
         #tabela {
         background-image: url("Irapuru.png");
-        background-size: contain; /* Preserva a proporção da imagem e a ajusta dentro da div */
+        background-size: auto; /* Preserva a proporção da imagem e a ajusta dentro da div */
         color: #002469;
         width: 875px;
         height: 292px;
@@ -129,11 +129,11 @@
             <fieldset id="fieldsetformulario">
                     <form action="" method="post">
                     <label id="titlenome" for="for_nome">Nome:</label>
-                    <input id="for_nome" type="text" style="display: inline-block;" oninput="alterarValor('for_nome');ajustarTexto('for_nome')">
+                    <input id="for_nome" type="text" style="display: inline-block;" oninput="alterarValor('for_nome');ajustarTexto('for_nome', 36)">
                     <label id="titlenome" for="for_cargo">Cargo:</label>
-                    <input id="for_cargo" type="text" style="display: inline-block;" oninput="alterarValor('for_cargo');ajustarTexto('for_cargo')">
+                    <input id="for_cargo" type="text" style="display: inline-block;" oninput="alterarValor('for_cargo');ajustarTexto('for_cargo', 24)">
                     <label for="for_celular">Telefone Móvel:</label>
-                    <input type="tel" name="Celular" id="for_celular" style="display: inline-block;font-family: 'Archivo', sans-serif;" maxlenght="15" oninput="formatarCelular(this);alterarValor('for_celular');imagemcelular('imgtelefone')">
+                    <input type="tel" name="Celular" id="for_celular" style="display: inline-block;font-family: 'Archivo', sans-serif;" oninput="formatarCelular(this);alterarValor('for_celular');imagemcelular('imgtelefone')">
                     <label for="for_telefone">Telefone Fixo:</label>
                     <input type="tel" name="telefone" id="for_telefone" style="font-family: 'Archivo', sans-serif;" oninput="formatarTelefone(this);alterarValor('for_telefone');imagemcelular('imgtelefone')">
                     <label for="for_filial">Empresa:</label>
@@ -159,7 +159,7 @@
                         <td style="vertical-align: top;" id="tdDados">
                             <div id="NomeCargo">
                                 <p style="font-family: Archivo-bold;font-size: 36px;margin: 0%;height: 30px;white-space: nowrap;align-content: end;" id="for_nome"></p>
-                                <p style="font-family: Archivo-light;font-size: 24px;margin-top: 8px;white-space: nowrap;" id="for_cargo"></p>
+                                <p style="font-family: Archivo-light;font-size: 24px;margin-top: 8px;white-space: nowrap;align-content: end;" id="for_cargo"></p>
                             </div>
                             <!-- <img class="numeros" id="imgcelular" style="max-width: 19px; margin: 0px;" src="whats.png" alt=""> -->
                             <div id="CelularTelefone">
@@ -192,7 +192,7 @@
             document.getElementById('tdDados').style.width = '386px'
             document.getElementById('tabela').style.color = '#002469'
             document.querySelector("table #for_cargo").style.marginTop = '8px'
-            document.querySelector("table #for_cargo").style.fontSize = '24px'
+            // document.querySelector("table #for_cargo").style.fontSize = '24px'
             document.querySelector("table #for_cargo").style.color = '#002469'
             document.querySelector("#NomeCargo").style.marginTop = '42px'
             document.querySelector("#NomeCargo").style.marginLeft = '0.5px'
@@ -301,8 +301,12 @@
         }
 
     function formatarCelular(input) {
+
         let digitos = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
         
+        if (digitos.length == 0) {
+            input.value = '';
+        }
         if (digitos.length > 0) {
             input.value = '(' + digitos.substring(0, 2);
         }
@@ -315,7 +319,10 @@
     }
     function formatarTelefone(input) {
         let digitos = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-        
+
+        if (digitos.length == 0) {
+            input.value = '';
+        }
         if (digitos.length > 0) {
             input.value = '(' + digitos.substring(0, 2);
         }
@@ -331,9 +338,9 @@
         document.querySelector("table #" + TableId).style.fontSize = fontvalor + 'px'
 
     }
-    function ajustarTexto(id) {
+    function ajustarTexto(id, tamanhofonte) {
         var caixa = document.querySelector("table #" + id);
-        var fontSize = 36; // Tamanho inicial da fonte
+        var fontSize = tamanhofonte; // Tamanho inicial da fonte
 
         caixa.style.fontSize = fontSize + 'px';
 
