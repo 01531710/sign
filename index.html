@@ -83,7 +83,7 @@
         }
 
         #NomeCargo{
-            width: 343px;
+            width: 380px;
             height: 60px;
             margin-top: 42px;
             margin-left: 0.5px;
@@ -129,11 +129,11 @@
             <fieldset id="fieldsetformulario">
                     <form action="" method="post">
                     <label id="titlenome" for="for_nome">Nome:</label>
-                    <input id="for_nome" type="text" style="display: inline-block;" oninput="alterarValor('for_nome')">
-                    <label for="for_cargo">Cargo:</label>
-                    <input id="for_cargo" type="text" style="display: inline-block;" oninput="alterarValor('for_cargo')">
+                    <input id="for_nome" type="text" style="display: inline-block;" oninput="alterarValor('for_nome');ajustarTexto('for_nome')">
+                    <label id="titlenome" for="for_cargo">Cargo:</label>
+                    <input id="for_cargo" type="text" style="display: inline-block;" oninput="alterarValor('for_cargo');ajustarTexto('for_cargo')">
                     <label for="for_celular">Telefone Móvel:</label>
-                    <input type="tel" name="Celular" id="for_celular" style="display: inline-block;font-family: 'Archivo', sans-serif;" oninput="formatarCelular(this);alterarValor('for_celular');imagemcelular('imgtelefone')">
+                    <input type="tel" name="Celular" id="for_celular" style="display: inline-block;font-family: 'Archivo', sans-serif;" maxlenght="15" oninput="formatarCelular(this);alterarValor('for_celular');imagemcelular('imgtelefone')">
                     <label for="for_telefone">Telefone Fixo:</label>
                     <input type="tel" name="telefone" id="for_telefone" style="font-family: 'Archivo', sans-serif;" oninput="formatarTelefone(this);alterarValor('for_telefone');imagemcelular('imgtelefone')">
                     <label for="for_filial">Empresa:</label>
@@ -158,8 +158,8 @@
                         </td>
                         <td style="vertical-align: top;" id="tdDados">
                             <div id="NomeCargo">
-                                <p style="font-family: Archivo-bold;font-size: 36px;margin: 0%;height: 30px;" id="for_nome"></p>
-                                <p style="font-family: Archivo-light;font-size: 24px;margin-top: 8px;" id="for_cargo"></p>
+                                <p style="font-family: Archivo-bold;font-size: 36px;margin: 0%;height: 30px;white-space: nowrap;align-content: end;" id="for_nome"></p>
+                                <p style="font-family: Archivo-light;font-size: 24px;margin-top: 8px;white-space: nowrap;" id="for_cargo"></p>
                             </div>
                             <!-- <img class="numeros" id="imgcelular" style="max-width: 19px; margin: 0px;" src="whats.png" alt=""> -->
                             <div id="CelularTelefone">
@@ -196,7 +196,7 @@
             document.querySelector("table #for_cargo").style.color = '#002469'
             document.querySelector("#NomeCargo").style.marginTop = '42px'
             document.querySelector("#NomeCargo").style.marginLeft = '0.5px'
-            document.querySelector("table #for_nome").style.fontSize = '36px'
+            // document.querySelector("table #for_nome").style.fontSize = '36px'
             document.querySelector("#CelularTelefone").style.marginTop = '33px'
             document.querySelector("table #for_celular").style.fontSize = '18px'
             document.querySelector("table #for_telefone").style.fontSize = '18px'
@@ -309,7 +309,7 @@
         if (digitos.length >= 3) {
             input.value += ') ' + digitos.substring(2, 7);
         }
-        if (digitos.length >= 7) {
+        if (digitos.length > 7) {
             input.value += '-' + digitos.substring(7, 11);
         }
     }
@@ -322,7 +322,7 @@
         if (digitos.length >= 3) {
             input.value += ') ' + digitos.substring(2, 6);
         }
-        if (digitos.length >= 6) {
+        if (digitos.length > 6) {
             input.value += '-' + digitos.substring(6, 10);
         }
     }
@@ -331,6 +331,17 @@
         document.querySelector("table #" + TableId).style.fontSize = fontvalor + 'px'
 
     }
-    
+    function ajustarTexto(id) {
+        var caixa = document.querySelector("table #" + id);
+        var fontSize = 36; // Tamanho inicial da fonte
+
+        caixa.style.fontSize = fontSize + 'px';
+
+        // Ajusta o tamanho da fonte até que o texto caiba na caixa
+        while (caixa.scrollWidth > caixa.clientWidth && fontSize > 10) {
+            fontSize -= 1; // Diminui o tamanho da fonte
+            caixa.style.fontSize = fontSize + 'px';
+        }
+    }
 </script>
 </html>
